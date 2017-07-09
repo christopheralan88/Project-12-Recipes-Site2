@@ -17,7 +17,7 @@ public class Recipe extends BaseEntity {
     private Category category;
     @Column
     private String image;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
     @OneToMany
     private List<Instruction> instructions;

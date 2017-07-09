@@ -6,7 +6,7 @@ $('#addIngredientButton').on('click', function () {
 
     var html = '<div class="ingredient-row" >' +
                     '<div class="prefix-20 grid-30">' +
-                    '<input type="hidden" value="' + newValue + '" id="ingredients' + newIndex +'.id" name="ingredients[' + newIndex + '].id"/>' +
+                    '<input type="hidden" id="ingredients' + newIndex +'.id" name="ingredients[' + newIndex + '].id"/>' +
                         '<p>' +
                             '<input id="ingredients' + newIndex + '.name" name="ingredients[' + newIndex + '].name"/>' +
                         '</p>' +
