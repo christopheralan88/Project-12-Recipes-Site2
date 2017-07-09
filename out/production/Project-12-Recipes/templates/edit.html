@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width"/>
+
+  <title>Recipe Editor | My Recipes</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
+  <link rel="stylesheet" th:href="@{/css/unsemantic-grid-responsive.css}"/>
+  <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+
+</head>
+
+<body>
+
+<nav>
+  <a href="profile.html">
+    Chandra S.
+  </a>
+  &bull;
+  <a href="login.html">
+    logout
+  </a>
+</nav>
+
+<div class="grid-container">
+
+  <div class="grid-100">
+    <a href="/">
+      <h1>
+        <img src="@{images/chefbot.svg}" height="60px"/>
+        <br/>
+        My Recipes
+      </h1>
+    </a>
+  </div>
+
+  <div class="grid-100">
+
+    <div class="recipes">
+
+      <div class="grid-100 row controls">
+        <div class="grid-50">
+          <h2> Recipe Editor </h2>
+        </div>
+      </div> <div class="clear"></div>
+
+      <form action="/" method="post" th:object="${recipe}">
+        <input type="hidden" th:field="*{id}"/>
+
+        <div class="grid-100 row">
+          <div class="grid-20">
+            <p class="label-spacing">
+              <label> Image </label>
+            </p>
+          </div>
+          <div class="grid-40">
+            <p>
+              <input placeholder="Url" th:field="*{image}" th:value="*{image}"/>
+            </p>
+          </div>
+        </div> <div class="clear"></div>
+
+        <div class="grid-100 row">
+          <div class="grid-20">
+            <p class="label-spacing">
+              <label> Name </label>
+            </p>
+          </div>
+          <div class="grid-40">
+            <p>
+              <input th:field="*{name}" th:value="*{name}"/>
+            </p>
+          </div>
+        </div> <div class="clear"></div>
+
+        <div class="grid-100 row">
+          <div class="grid-20">
+            <p class="label-spacing">
+              <label> Category </label>
+            </p>
+          </div>
+          <div class="grid-30">
+            <p>
+              <select th:field="*{category}">
+                <option th:each="category : ${categories}" th:text="${category.name}" th:value="*{category.id}"></option>
+              </select>
+            </p>
+          </div>
+        </div> <div class="clear"></div>
+
+        <div class="grid-100 row">
+          <div class="grid-20">
+            <p class="label-spacing">
+              <label> Prep Time </label>
+            </p>
+          </div>
+          <div class="grid-20">
+            <p>
+              <input th:field="*{preparationTime}" th:value="*{preparationTime}"/>
+            </p>
+          </div>
+        </div> <div class="clear"></div>
+
+        <div class="grid-100 row">
+          <div class="grid-20">
+            <p class="label-spacing">
+              <label> Cook Time </label>
+            </p>
+          </div>
+          <div class="grid-20">
+            <p>
+              <input th:field="*{cookTime}" th:value="*{cookTime}"/>
+            </p>
+          </div>
+        </div> <div class="clear"></div>
+
+        <div class="grid-100 row">
+          <div class="grid-20">
+            <p class="label-spacing">
+              <label> Ingredients </label>
+            </p>
+          </div>
+          <div class="grid-30">
+            <p class="label-spacing">
+              <label> Item </label>
+            </p>
+          </div>
+          <div class="grid-20">
+            <p class="label-spacing">
+              <label> Quantity </label>
+            </p>
+          </div>
+
+          <div th:each="ingredient : ${ingredients}" class="ingredient-row">
+            <div class="prefix-20 grid-30">
+              <input type="hidden" th:field="*{ingredients[__ingredientStat.index__].id}" th:value="${ingredient.id}"/>
+              <p>
+                <input th:field="*{ingredients[__ingredientStat.index__].name}" th:value="${ingredient.name}"/>
+              </p>
+            </div>
+            <div class="grid-10 suffix-10">
+              <p>
+                <input th:field="*{ingredients[__ingredientStat.index__].measure}" th:value="${ingredient.measure}"/>
+              </p>
+            </div>
+          </div>
+
+          <div class="prefix-20 grid-80 add-row">
+            <p>
+              <button id="addIngredientButton" type="button">+ Add Another Ingredient</button>
+            </p>
+          </div>
+
+        </div> <div class="clear"></div>
+
+        <div class="grid-100 row">
+          <div class="grid-20">
+            <p class="label-spacing">
+              <label> Steps </label>
+            </p>
+          </div>
+          <div class="grid-80">
+            <p class="label-spacing">
+              <label> Description </label>
+            </p>
+          </div>
+
+          <div th:each="instruction : ${instructions}" class="step-row">
+            <div class="prefix-20 grid-80">
+              <input type="hidden" th:field="*{instructions[__instructionStat.index__].id}" th:value="*{instruction.id}"/>
+              <p>
+                <input th:field="*{instructions[__instructionStat.index__].text}" th:value="${instruction.text}"/>
+              </p>
+            </div>
+          </div>
+
+          <div class="prefix-20 grid-80 add-row">
+            <p>
+              <button>+ Add Another Step</button>
+            </p>
+          </div>
+
+        </div> <div class="clear"></div>
+
+        <div class="row">&nbsp;</div>
+
+        <div class="grid-100 row controls">
+          <div class="grid-50">
+            <div class="flush-right">
+              <button type="submit">Save Recipe</button>
+              <button class="secondary">Cancel</button>
+            </div>
+          </div>
+        </div> <div class="clear"></div>
+
+      </form>
+
+    </div> <!-- recipes -->
+  </div> <!-- grid-100 -->
+</div> <!-- grid-container -->
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+<script th:src="@{/js/main.js}" type="text/javascript"></script>
+
+</body>
+</html>

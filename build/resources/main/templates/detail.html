@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width"/>
+
+  <title th:text="${recipe.name}">Brioche French Toast with Nutella | My Recipes</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
+  <link rel="stylesheet" th:href="@{/css/unsemantic-grid-responsive.css}"/>
+  <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+
+</head>
+
+<body>
+
+<nav>
+  <a href="profile.html">
+    Chandra S.
+  </a>
+  &bull;
+  <a href="login.html">
+    logout
+  </a>
+</nav>
+
+<div class="grid-container">
+
+  <div class="grid-100">
+    <a href="/">
+      <h1>
+        <img th:src="@{/images/chefbot.svg}" height="60px"/>
+        <br/>
+        My Recipes
+      </h1>
+    </a>
+  </div>
+
+  <div class="grid-100">
+
+    <div class="recipes">
+
+      <div class="grid-100 row controls">
+        <div class="grid-50">
+          <h2 th:text="${recipe.name}"> Brioche French Toast with Nutella </h2>
+        </div>
+        <div class="grid-50">
+          <h2 class="flush-right">
+            <a href="#">
+              <img src="@{${recipe.image}}" height="16px"/>
+            </a>
+          </h2>
+        </div>
+      </div> <div class="clear"></div>
+
+      <div class="grid-100 row">
+        <div class="grid-20">
+          <p>
+            <label> Photo </label>
+          </p>
+        </div>
+        <div class="grid-40">
+          <p>
+            [photo]
+          </p>
+        </div>
+      </div> <div class="clear"></div>
+
+      <div class="grid-100 row">
+        <div class="grid-20">
+          <p>
+            <label> Name </label>
+          </p>
+        </div>
+        <div class="grid-40">
+          <p th:text="${recipe.name}">
+            Brioche French Toast with Nutella
+          </p>
+        </div>
+      </div> <div class="clear"></div>
+
+      <div class="grid-100 row">
+        <div class="grid-20">
+          <p>
+            <label> Description </label>
+          </p>
+        </div>
+        <div class="grid-40">
+          <p th:text="${recipe.description}">
+            A generic description
+          </p>
+        </div>
+      </div> <div class="clear"></div>
+
+      <div class="grid-100 row">
+        <div class="grid-20">
+          <p>
+            <label> Category </label>
+          </p>
+        </div>
+        <div class="grid-30">
+          <p th:text="${recipe.category.name}">
+            Dessert
+          </p>
+        </div>
+      </div> <div class="clear"></div>
+
+      <div class="grid-100 row">
+        <div class="grid-20">
+          <p>
+            <label> Prep Time </label>
+          </p>
+        </div>
+        <div class="grid-20">
+          <p th:text="${recipe.preparationTime}">
+            5 minutes
+          </p>
+        </div>
+      </div> <div class="clear"></div>
+
+      <div class="grid-100 row">
+        <div class="grid-20">
+          <p>
+            <label> Cook Time </label>
+          </p>
+        </div>
+        <div class="grid-20">
+          <p th:text="${recipe.cookTime}">
+            15 minutes
+          </p>
+        </div>
+      </div> <div class="clear"></div>
+
+      <div class="grid-100 row">
+        <div class="grid-20">
+          <p>
+            <label> Ingredients </label>
+          </p>
+        </div>
+        <div class="grid-30">
+          <p>
+            <label> Item </label>
+          </p>
+        </div>
+        <div class="grid-30">
+          <p>
+            <label> Condition </label>
+          </p>
+        </div>
+        <div class="grid-20">
+          <p>
+            <label> Quantity </label>
+          </p>
+        </div>
+
+        <div th:each="ingredient : ${recipe.ingredients}" class="ingredient-row">
+          <div class="prefix-20 grid-30">
+            <p th:text="${ingredient.name}"></p>
+          </div>
+          <div class="grid-30">
+            <p th:text="${ingredient.condition}"></p>
+          </div>
+          <div class="grid-10 suffix-10">
+            <p th:text="${ingredient.measure}"></p>
+          </div>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="grid-100 row">
+          <div class="grid-20">
+            <p>
+              <label> Steps </label>
+            </p>
+          </div>
+          <div class="grid-80">
+            <p>
+              <label> Description </label>
+            </p>
+          </div>
+
+          <div th:each="instruction : ${recipe.instructions}" class="step-row">
+            <div class="prefix-20 grid-80">
+              <p th:text="${instruction.step} + ') ' + ${instruction.text}"></p>
+            </div>
+          </div>
+
+        </div> <div class="clear"></div>
+
+        <div class="row">&nbsp;</div>
+
+      </div> <!-- recipes -->
+    </div> <!-- grid-100 -->
+  </div> <!-- grid-container -->
+</div>
+</body>
+</html>

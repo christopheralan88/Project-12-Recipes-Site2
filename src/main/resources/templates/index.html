@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width"/>
+
+  <title>My Recipes</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
+  <link rel="stylesheet" href="css/unsemantic-grid-responsive.css"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+
+</head>
+
+<body>
+
+<nav>
+  <a href="profile.html">
+    Chandra S.
+  </a>
+  &bull;
+  <a href="login.html">
+    logout
+  </a>
+</nav>
+
+<div class="grid-container">
+
+  <div class="grid-100">
+    <a href="/">
+      <h1>
+        <img src="images/chefbot.svg" height="60px"/>
+        <br/>
+        My Recipes
+      </h1>
+    </a>
+  </div>
+
+  <div class="grid-100">
+
+    <div class="recipes">
+
+      <form action="/" method="get">
+        <div class="grid-100 row controls">
+          <div class="grid-30">
+            <select id="searchCategory" name="searchCategory">
+              <option value=""></option>
+              <option th:each="category : ${categories}" th:text="${category.name}"></option>
+            </select>
+          </div>
+          <div class="grid-40">
+            <input id="searchDescription" name="searchDescription" placeholder="Search"/>
+          </div>
+          <button type="submit">Search</button>
+          <div class="grid-30">
+            <div class="flush-right">
+              <a href="/add">+ Add Recipe</a>
+            </div>
+          </div>
+        </div> <div class="clear"></div>
+      </form>
+
+      <div th:each="recipe : ${recipes}" class="grid-100 row addHover">
+        <a th:href="@{|/detail/${recipe.id}|}">
+          <div class="grid-70">
+            <p th:text="${recipe.name}">
+              <span><img src="${recipe.image}" height="12px" alt="Yummy food!"/> </span>
+            </p>
+          </div>
+        </a>
+        <div class="hoverBlock">
+          <div class="grid-30">
+            <div class="flush-right">
+              <p>
+                <a th:href="'/edit/' + ${recipe.id}"> <img src="images/edit.svg" height="12px"/> Edit </a>
+              <form th:action="'/delete/' + ${recipe.id}" method="post">
+                <img src="images/delete.svg" height="12px"/>
+                <button type="submit">Delete</button>
+              </form>
+              <!--<a th:href="'/delete/' + ${recipe.id}"> <img src="images/delete.svg" height="12px"/> Delete </a>-->
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+
+      <div class="clear"></div>
+
+      <div class="row">&nbsp;</div>
+
+    </div> <!-- recipes -->
+  </div> <!-- grid-100 -->
+</div> <!-- grid-container -->
+</body>
+</html>

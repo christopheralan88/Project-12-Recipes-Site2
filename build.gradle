@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'eclipse'
+    id 'org.springframework.boot' version '1.4.3.RELEASE'
+}
+
+group 'com.cj'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile 'org.hashids:hashids:1.0.1'
+    compile 'org.springframework:spring-orm:4.2.5.RELEASE'
+    compile 'org.apache.tomcat:tomcat-dbcp:8.0.32'
+    compile 'com.h2database:h2'
+    compile 'org.springframework.boot:spring-boot-starter-data-rest'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.data:spring-data-rest-hal-browser'
+    compile 'org.slf4j:slf4j-api:1.7.13'
+    //compile 'org.springframework.boot:spring-boot-starter-security'
+    //compile 'org.springframework.security:spring-security-web'
+    //compile 'org.springframework.security:spring-security-config'
+    //compile 'org.springframework.security:spring-security-test'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.springframework:spring-test'
+    testCompile 'org.dbunit:dbunit:2.5.1'
+    testCompile 'com.github.springtestdbunit:spring-test-dbunit:1.2.1'
+    testCompile 'org.assertj:assertj-core:3.2.0'
+    testCompile 'net.sourceforge.htmlunit:htmlunit:2.20'
+    testCompile 'org.easytesting:fest-assert:1.4'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.apache.httpcomponents:httpclient:4.5.2'
+}
