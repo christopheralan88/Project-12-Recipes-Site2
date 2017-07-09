@@ -1,25 +1,27 @@
-$('#add-ingredient').on('click', function () {
+$('#addIngredientButton').on('click', function () {
     console.log('Button was pressed');
+
+    var newValue = $( '.ingredient-row' ).length + 1;
     var newIndex = $( '.ingredient-row' ).length;
 
-    var html = '<div class="ingredient-row" id="ingredientNumber' + newIndex + '">' +
+    var html = '<div class="ingredient-row" >' +
                     '<div class="prefix-20 grid-30">' +
-                    '<input type="hidden" value="' + newIndex + '" id="ingredients' + newIndex +'.id}" name="ingredients[' + newIndex + '].id"/>' +
+                    '<input type="hidden" value="' + newValue + '" id="ingredients' + newIndex +'.id" name="ingredients[' + newIndex + '].id"/>' +
                         '<p>' +
-                            '<input id="ingredients' + newIndex + '.name" name="ingredients[' + newIndex + '].name">' +
+                            '<input id="ingredients' + newIndex + '.name" name="ingredients[' + newIndex + '].name"/>' +
                         '</p>' +
                     '</div>' +
                     '<div class="grid-30">' +
                         '<p>' +
-                            '<input id="ingredients' + newIndex + '.condition}" name="ingredients[' + newIndex + '].condition}"/>' +
+                            '<input id="ingredients' + newIndex + '.condition" name="ingredients[' + newIndex + '].condition"/>' +
                         '</p>' +
                     '</div>' +
                     '<div class="grid-10 suffix-10">' +
                         '<p>' +
-                            '<p><input id="ingredients' + newIndex + '.measure" name="ingredients['+ newIndex + '].measure"></p>' +
+                            '<input id="ingredients' + newIndex + '.measure" name="ingredients['+ newIndex + '].measure"/>' +
                         '</p>' +
                     '</div>' +
                 '</div>';
 
-    $( "#addIngredientButton" ).before(html);
+    $( "#addIngredientButton" ).closest('div').before(html);
 });

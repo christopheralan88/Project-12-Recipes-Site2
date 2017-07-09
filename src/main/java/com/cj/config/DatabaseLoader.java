@@ -60,8 +60,8 @@ public class DatabaseLoader implements ApplicationRunner {
                 .forEach(i -> {
                     //remove item added to lists from previous loop
                     if (ingredients.size() > 0 && instructions.size() > 0) {
-                        ingredients.remove(0);
-                        instructions.remove(0);
+                        ingredients.removeAll(ingredients);
+                        instructions.removeAll(instructions);
                     }
 
                     //create new recipe without instructions, ingredients, or categories then save recipe
@@ -71,21 +71,21 @@ public class DatabaseLoader implements ApplicationRunner {
 
                     //create new ingredient, reference recipe, and save ingredient
                     Ingredient ingredient = new Ingredient("ingredient" + i, "2 cups", "Fresh");
+                    Ingredient ingredient2 = new Ingredient("ingredient2" + i, "none", "Old");
                     ingredientDao.save(ingredient);
+                    ingredientDao.save(ingredient2);
 
                     //create new instruction, reference recipe, and save instruction
                     Instruction instruction = new Instruction( 1L, "An instruction" + i);
                     instructionDao.save(instruction);
 
                     //add ingredient and instruction to lists and add lists to recipe, then save recipe (this updates the recipe since it was already saved)
-                    //categoryDao.save(categoryLunch); //update now that recipe has been saved with categoryLunch
                     ingredients.add(ingredient);
+                    ingredients.add(ingredient2);
                     recipe.setIngredients(ingredients);
 
                     instructions.add(instruction);
                     recipe.setInstructions(instructions);
-
-                    //recipe.setCategory(categoryLunch);
 
                     recipeDao.save(recipe);
                 });
