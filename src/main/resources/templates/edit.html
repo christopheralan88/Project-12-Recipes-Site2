@@ -184,24 +184,34 @@
               <label> Steps </label>
             </p>
           </div>
-          <div class="grid-80">
+          <div class="grid-30">
+            <p class="label-spacing">
+              <label> Step </label>
+            </p>
+          </div>
+          <div class="grid-30">
             <p class="label-spacing">
               <label> Description </label>
             </p>
           </div>
 
           <div th:each="instruction : *{instructions}" class="step-row">
-            <div class="prefix-20 grid-80">
+            <div class="prefix-20 grid-30">
               <input type="hidden" th:field="*{instructions[__${instructionStat.index}__].id}" th:value="${instruction.id}"/>
+                <p>
+                  <input th:field="*{instructions[__${instructionStat.index}__].step}" th:value="${instruction.step}"/>
+                </p>
+            </div>
+            <div class="grid-30">
               <p>
-                <input th:field="*{instructions[__${instructionStat.index}__].text}" th:value="${instruction.text}"/>
+                <textarea th:field="*{instructions[__${instructionStat.index}__].text}" th:value="${instruction.text}"></textarea>
               </p>
             </div>
           </div>
 
           <div class="prefix-20 grid-80 add-row">
             <p>
-              <button>+ Add Another Step</button>
+              <button id="addInstructionButton">+ Add Another Step</button>
             </p>
           </div>
 
@@ -212,7 +222,7 @@
         <div class="grid-100 row controls">
           <div class="grid-50">
             <div class="flush-right">
-              <button type="submit">Save Recipe</button>
+              <button id="submit" type="submit">Save Recipe</button>
               <button class="secondary">Cancel</button>
             </div>
           </div>

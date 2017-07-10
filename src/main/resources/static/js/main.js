@@ -1,5 +1,5 @@
 $('#addIngredientButton').on('click', function () {
-    console.log('Button was pressed');
+    console.log('Ingredient button was pressed');
 
     var newValue = $( '.ingredient-row' ).length + 1;
     var newIndex = $( '.ingredient-row' ).length;
@@ -24,4 +24,27 @@ $('#addIngredientButton').on('click', function () {
                 '</div>';
 
     $( "#addIngredientButton" ).closest('div').before(html);
+});
+
+
+$('#addInstructionButton').on('click', function () {
+    console.log('Instruction button was pressed');
+
+    var newIndex = $( '.step-row' ).length;
+
+    var html = '<div class="step-row">' +
+                   '<div class="prefix-20 grid-30">' +
+                   '<input type="hidden" id="instructions' + newIndex + '.id" name="instructions[' + newIndex + '].id"/>' +
+                          '<p>' +
+                               '<input id="instructions' + newIndex + '.step" name="instructions[' + newIndex + '].step"/>' +
+                          '</p>' +
+                   '</div>' +
+                   '<div class="grid-30">' +
+                         '<p>' +
+                            '<textarea id="instructions' + newIndex + '.text" name="instructions[' + newIndex + '].text"></textarea>' +
+                         '</p>' +
+                   '</div>' +
+                '</div>'
+
+    $( "#addInstructionButton" ).closest('div').before(html);
 });
