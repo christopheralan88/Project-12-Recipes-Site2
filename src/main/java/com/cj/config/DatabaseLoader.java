@@ -19,26 +19,26 @@ public class DatabaseLoader implements ApplicationRunner {
     private IngredientDao ingredientDao;
     private InstructionDao instructionDao;
     private CategoryDao categoryDao;
-    //private UserDao userDao;
+    private UserDao userDao;
 
     @Autowired
-    public DatabaseLoader(RecipeDao recipeDao, IngredientDao ingredientDao, InstructionDao instructionDao, CategoryDao categoryDao) {
+    public DatabaseLoader(RecipeDao recipeDao, IngredientDao ingredientDao, InstructionDao instructionDao, CategoryDao categoryDao, UserDao userDao) {
         this.recipeDao = recipeDao;
         this.ingredientDao = ingredientDao;
         this.instructionDao = instructionDao;
         this.categoryDao = categoryDao;
-        //this.userDao = userDao;
+        this.userDao = userDao;
     }
 
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        /*List<User> userList = Arrays.asList(
+        List<User> userList = Arrays.asList(
                 new User("admin", new String[] {"ROLE_USER", "ROLE_ADMIN"}, "abc"),
                 new User("user", new String[] {"ROLE_USER"}, "def"),
                 new User("admin2", new String[] {"ROLE_USER", "ROLE_ADMIN"}, "ghi")
         );
-        userDao.save(userList);*/
+        userDao.save(userList);
 
         //save all categories
         Category categoryAll = new Category("All");
@@ -66,7 +66,7 @@ public class DatabaseLoader implements ApplicationRunner {
 
                     //create new recipe without instructions, ingredients, or categories then save recipe
                     Recipe recipe = new Recipe("recipe" + i, categoryLunch, "an image string",
-                            null, null, 1L, 1L, "A description for a really yummy recipe" + i);
+                            null, null, 1L, 1L, "A description for a really yummy recipe" + i, userList.get(0));
                     recipeDao.save(recipe);
 
                     //create new ingredient, reference recipe, and save ingredient

@@ -1,10 +1,6 @@
 package com.cj.model;
 
 
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +23,8 @@ public class Recipe extends BaseEntity {
     private Long cookTime;
     @Column
     private String description;
+    @ManyToOne
+    private User user;
 
 
     public Recipe() {
@@ -36,7 +34,8 @@ public class Recipe extends BaseEntity {
         instructions = new ArrayList<>();
     }
 
-    public Recipe(String name, Category category, String image, List<Ingredient> ingredients, List<Instruction> instructions, Long prepTime, Long cookTime, String description) {
+    public Recipe(String name, Category category, String image, List<Ingredient> ingredients, List<Instruction> instructions,
+                  Long prepTime, Long cookTime, String description, User user) {
         this();
         this.name = name;
         this.category = category;
@@ -46,6 +45,7 @@ public class Recipe extends BaseEntity {
         this.preparationTime = prepTime;
         this.cookTime = cookTime;
         this.description = description;
+        this.user = user;
     }
 
     public String getName() {
@@ -112,6 +112,14 @@ public class Recipe extends BaseEntity {
         this.description = description;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -119,24 +127,30 @@ public class Recipe extends BaseEntity {
 
         Recipe recipe = (Recipe) o;
 
-        if (!name.equals(recipe.name)) return false;
-        if (category != recipe.category) return false;
-        if (!image.equals(recipe.image)) return false;
-        if (!ingredients.equals(recipe.ingredients)) return false;
-        if (!instructions.equals(recipe.instructions)) return false;
-        if (!preparationTime.equals(recipe.preparationTime)) return false;
-        return cookTime.equals(recipe.cookTime);
+        if (name != null ? !name.equals(recipe.name) : recipe.name != null) return false;
+        if (category != null ? !category.equals(recipe.category) : recipe.category != null) return false;
+        if (image != null ? !image.equals(recipe.image) : recipe.image != null) return false;
+        if (ingredients != null ? !ingredients.equals(recipe.ingredients) : recipe.ingredients != null) return false;
+        if (instructions != null ? !instructions.equals(recipe.instructions) : recipe.instructions != null)
+            return false;
+        if (preparationTime != null ? !preparationTime.equals(recipe.preparationTime) : recipe.preparationTime != null)
+            return false;
+        if (cookTime != null ? !cookTime.equals(recipe.cookTime) : recipe.cookTime != null) return false;
+        if (description != null ? !description.equals(recipe.description) : recipe.description != null) return false;
+        return user != null ? user.equals(recipe.user) : recipe.user == null;
     }
 
     @Override
     public int hashCode() {
-        int result = (name != null ? name.hashCode() : 0);
+        int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (category != null ? category.hashCode() : 0);
         result = 31 * result + (image != null ? image.hashCode() : 0);
         result = 31 * result + (ingredients != null ? ingredients.hashCode() : 0);
         result = 31 * result + (instructions != null ? instructions.hashCode() : 0);
         result = 31 * result + (preparationTime != null ? preparationTime.hashCode() : 0);
         result = 31 * result + (cookTime != null ? cookTime.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
         return result;
     }
 }

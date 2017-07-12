@@ -49,6 +49,7 @@
 
       <form action="/" method="post" th:object="${recipe}">
         <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{user}" th:value="*{user}"/>
 
         <div class="grid-100 row">
           <div class="grid-20">
@@ -97,7 +98,7 @@
           <div class="grid-30">
             <p>
               <select th:field="*{category}">
-                <option th:each="category : ${categories}" th:text="${category.name}" th:value="*{category.id}"></option>
+                <option th:each="category : ${categories}" th:text="${category.name}" th:value="${category.id}"></option>
               </select>
             </p>
           </div>
