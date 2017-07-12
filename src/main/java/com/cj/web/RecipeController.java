@@ -47,6 +47,10 @@ public class RecipeController {
             recipes = (List<Recipe>)recipeService.findAll();
         }
         recipes.sort(Comparator.comparing(Recipe::getName));
+        // if user.favorites != null && recipes.size > 0
+            // foreach recipe in recipes
+                //if user.favorites.contains(recipe) then recipe.favorited = true
+
         model.put("recipes", recipes);
 
         model.put("categories", categoryService.findAll());

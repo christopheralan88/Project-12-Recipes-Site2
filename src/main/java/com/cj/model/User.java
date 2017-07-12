@@ -6,8 +6,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 
 @Entity
@@ -23,6 +25,9 @@ public class User extends BaseEntity{
     @Size(min = 3)
     @JsonIgnore
     private String password;
+    @JsonIgnore
+    @OneToMany
+    private List<Recipe> favorites;
 
     private User() {
         super();
@@ -59,5 +64,13 @@ public class User extends BaseEntity{
     public void setPassword(String password) {
         //this.password = PASSWORD_ENCODER.encode(password);
         this.password = password;
+    }
+
+    public List<Recipe> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Recipe> favorites) {
+        this.favorites = favorites;
     }
 }

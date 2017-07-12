@@ -25,6 +25,7 @@ public class Recipe extends BaseEntity {
     private String description;
     @ManyToOne
     private User user;
+    private boolean favorited = false;
 
 
     public Recipe() {
@@ -120,6 +121,14 @@ public class Recipe extends BaseEntity {
         this.user = user;
     }
 
+    public boolean isFavorited() {
+        return favorited;
+    }
+
+    public void setFavorited(boolean favorited) {
+        this.favorited = favorited;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -127,6 +136,7 @@ public class Recipe extends BaseEntity {
 
         Recipe recipe = (Recipe) o;
 
+        if (favorited != recipe.favorited) return false;
         if (name != null ? !name.equals(recipe.name) : recipe.name != null) return false;
         if (category != null ? !category.equals(recipe.category) : recipe.category != null) return false;
         if (image != null ? !image.equals(recipe.image) : recipe.image != null) return false;
@@ -151,6 +161,7 @@ public class Recipe extends BaseEntity {
         result = 31 * result + (cookTime != null ? cookTime.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (favorited ? 1 : 0);
         return result;
     }
 }
