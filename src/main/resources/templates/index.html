@@ -62,6 +62,7 @@
       </form>
 
       <div th:each="recipe : ${recipes}" class="grid-100 row addHover">
+        <img th:src="*{recipe.favorited} ? 'images/favorited.svg' : 'images/favorite.svg'" height="12px"/>
         <a th:href="@{|/detail/${recipe.id}|}">
           <div class="grid-70">
             <p th:text="${recipe.name}">

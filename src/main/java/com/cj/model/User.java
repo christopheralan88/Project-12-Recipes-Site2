@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -16,7 +17,8 @@ import java.util.List;
 public class User extends BaseEntity{
     //public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
     @NotNull
-    @Size(min = 1)
+    @Column(unique = true)
+    @Size(min = 5, max = 20)
     private String name;
     @NotNull
     @JsonIgnore
