@@ -2,23 +2,24 @@ package com.cj.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Entity
 public class User extends BaseEntity{
-    //public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+    public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
     @NotNull
     @Column(unique = true)
-    @Size(min = 5, max = 20)
+    @Size(min = 1, max = 20)
     private String name;
     @NotNull
     @JsonIgnore
@@ -28,8 +29,8 @@ public class User extends BaseEntity{
     @JsonIgnore
     private String password;
     @JsonIgnore
-    @OneToMany
-    private List<Recipe> favorites;
+    @ManyToMany
+    private List<Recipe> favorites = new ArrayList<>();
 
     private User() {
         super();
@@ -39,7 +40,7 @@ public class User extends BaseEntity{
         this();
         this.name = name;
         this.roles = roles;
-        //this.password = PASSWORD_ENCODER.encode(password);
+        this.password = PASSWORD_ENCODER.encode(password);
         this.password = password;
     }
 
@@ -64,7 +65,7 @@ public class User extends BaseEntity{
     }
 
     public void setPassword(String password) {
-        //this.password = PASSWORD_ENCODER.encode(password);
+        this.password = PASSWORD_ENCODER.encode(password);
         this.password = password;
     }
 
