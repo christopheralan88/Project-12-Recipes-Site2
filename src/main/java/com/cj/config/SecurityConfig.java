@@ -40,7 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .permitAll()
                 .successHandler(loginSuccessHandler())
-                .failureHandler(loginFailureHandler());
+                .failureHandler(loginFailureHandler())
+                .and()
+            .logout()
+                .permitAll()
+                .logoutSuccessUrl("/login");
     }
 
     public AuthenticationSuccessHandler loginSuccessHandler() {

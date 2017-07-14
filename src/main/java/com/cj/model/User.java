@@ -32,7 +32,7 @@ public class User extends BaseEntity{
     @ManyToMany
     private List<Recipe> favorites = new ArrayList<>();
 
-    private User() {
+    public User() {
         super();
     }
 
