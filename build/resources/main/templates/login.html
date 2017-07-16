@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width"/>
 
   <title>Login | My Recipes</title>
 
-  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="css/unsemantic-grid-responsive.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
+  <link rel="stylesheet" href="css/unsemantic-grid-responsive.css"/>
+  <link rel="stylesheet" href="css/styles.css"/>
 
 </head>
 
@@ -30,32 +30,34 @@
     <div class="grid-100">
       <a href="index.html">
         <h1>
-          <img src="images/chefbot.svg" height="60px">
-          <br>
+            <img src="images/chefbot.svg" height="60px"/>
+          <br/>
           My Recipes
         </h1>
       </a>
     </div>
 
-    <div class="grid-100">
-      <div class="recipes">
-        <div class="prefix-20 grid-60 suffix-20">
-          <p>
-            <input placeholder="Username"> </input>
-          </p>
-        </div> <div class="clear"></div>
-        <div class="prefix-20 grid-60 suffix-20">
-          <p>
-            <input placeholder="Password" type="password"> </input>
-          </p>
-        </div> <div class="clear"></div>
-        <div class="prefix-20 grid-60 suffix-20">
-          <p>
-            <button>Login</button>
-          </p>
-        </div> <div class="clear"></div>
-      </div> <!-- recipes -->
-    </div> <!-- grid-100 -->
+    <form action="/" method="get" th:object="${user}">
+      <div class="grid-100">
+        <div class="recipes">
+          <div class="prefix-20 grid-60 suffix-20">
+            <p>
+              <input placeholder="Username" th:text="*{name}"> </input>
+            </p>
+          </div> <div class="clear"></div>
+          <div class="prefix-20 grid-60 suffix-20">
+            <p>
+              <input type="password" th:text="*{password}"> </input>
+            </p>
+          </div> <div class="clear"></div>
+          <div class="prefix-20 grid-60 suffix-20">
+            <p>
+              <button type="submit">Login</button>
+            </p>
+          </div> <div class="clear"></div>
+        </div> <!-- recipes -->
+      </div> <!-- grid-100 -->
+    </form>
   </div> <!-- grid-container -->
 </body>
 </html>
