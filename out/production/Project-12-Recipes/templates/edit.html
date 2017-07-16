@@ -49,6 +49,7 @@
 
       <form action="/" method="post" th:object="${recipe}">
         <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{user}" th:value="*{user}"/>
 
         <div class="grid-100 row">
           <div class="grid-20">
@@ -78,6 +79,18 @@
 
         <div class="grid-100 row">
           <div class="grid-20">
+            <p>
+              <label> Description </label>
+            </p>
+          </div>
+          <div class="grid-40">
+            <textarea th:field="*{description}" th:value="*{description}"/>
+          </div>
+        </div> <div class="clear"></div>
+
+
+        <div class="grid-100 row">
+          <div class="grid-20">
             <p class="label-spacing">
               <label> Category </label>
             </p>
@@ -85,7 +98,7 @@
           <div class="grid-30">
             <p>
               <select th:field="*{category}">
-                <option th:each="category : ${categories}" th:text="${category.name}" th:value="*{category.id}"></option>
+                <option th:each="category : ${categories}" th:text="${category.name}" th:value="${category.id}"></option>
               </select>
             </p>
           </div>
@@ -128,22 +141,32 @@
               <label> Item </label>
             </p>
           </div>
+          <div class="grid-30">
+            <p class="label-spacing">
+              <label> Condition </label>
+            </p>
+          </div>
           <div class="grid-20">
             <p class="label-spacing">
               <label> Quantity </label>
             </p>
           </div>
 
-          <div th:each="ingredient : ${ingredients}" class="ingredient-row">
+          <div th:each="ingredient : *{ingredients}" class="ingredient-row">
             <div class="prefix-20 grid-30">
-              <input type="hidden" th:field="*{ingredients[__ingredientStat.index__].id}" th:value="${ingredient.id}"/>
+              <input type="hidden" th:field="*{ingredients[__${ingredientStat.index}__].id}" th:value="${ingredient.id}"/>
               <p>
-                <input th:field="*{ingredients[__ingredientStat.index__].name}" th:value="${ingredient.name}"/>
+                <input th:field="*{ingredients[__${ingredientStat.index}__].name}" th:value="${ingredient.name}"/>
+              </p>
+            </div>
+            <div class="grid-30">
+              <p>
+                <input th:field="*{ingredients[__${ingredientStat.index}__].condition}" th:value="${ingredient.condition}"/>
               </p>
             </div>
             <div class="grid-10 suffix-10">
               <p>
-                <input th:field="*{ingredients[__ingredientStat.index__].measure}" th:value="${ingredient.measure}"/>
+                <input th:field="*{ingredients[__${ingredientStat.index}__].measure}" th:value="${ingredient.measure}"/>
               </p>
             </div>
           </div>
@@ -162,24 +185,34 @@
               <label> Steps </label>
             </p>
           </div>
-          <div class="grid-80">
+          <div class="grid-30">
+            <p class="label-spacing">
+              <label> Step </label>
+            </p>
+          </div>
+          <div class="grid-30">
             <p class="label-spacing">
               <label> Description </label>
             </p>
           </div>
 
-          <div th:each="instruction : ${instructions}" class="step-row">
-            <div class="prefix-20 grid-80">
-              <input type="hidden" th:field="*{instructions[__instructionStat.index__].id}" th:value="*{instruction.id}"/>
+          <div th:each="instruction : *{instructions}" class="step-row">
+            <div class="prefix-20 grid-30">
+              <input type="hidden" th:field="*{instructions[__${instructionStat.index}__].id}" th:value="${instruction.id}"/>
+                <p>
+                  <input th:field="*{instructions[__${instructionStat.index}__].step}" th:value="${instruction.step}"/>
+                </p>
+            </div>
+            <div class="grid-30">
               <p>
-                <input th:field="*{instructions[__instructionStat.index__].text}" th:value="${instruction.text}"/>
+                <textarea th:field="*{instructions[__${instructionStat.index}__].text}" th:value="${instruction.text}"></textarea>
               </p>
             </div>
           </div>
 
           <div class="prefix-20 grid-80 add-row">
             <p>
-              <button>+ Add Another Step</button>
+              <button type="button" id="addInstructionButton">+ Add Another Step</button>
             </p>
           </div>
 
@@ -190,7 +223,7 @@
         <div class="grid-100 row controls">
           <div class="grid-50">
             <div class="flush-right">
-              <button type="submit">Save Recipe</button>
+              <button id="submit" type="submit">Save Recipe</button>
               <button class="secondary">Cancel</button>
             </div>
           </div>

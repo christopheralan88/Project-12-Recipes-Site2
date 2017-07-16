@@ -44,18 +44,17 @@
       <form action="/" method="get">
         <div class="grid-100 row controls">
           <div class="grid-30">
-            <select id="searchCriteria" name="searchCriteria">
+            <select id="searchCategory" name="searchCategory">
               <option value=""></option>
               <option th:each="category : ${categories}" th:text="${category.name}"></option>
             </select>
           </div>
-          <!--<div class="grid-40">
-            <input placeholder="Search"></input>
-          </div>-->
+          <div class="grid-40">
+            <input id="searchDescription" name="searchDescription" placeholder="Search"/>
+          </div>
           <button type="submit">Search</button>
           <div class="grid-30">
             <div class="flush-right">
-              <!--<button>+ Add Recipe</button>-->
               <a href="/add">+ Add Recipe</a>
             </div>
           </div>
@@ -63,6 +62,7 @@
       </form>
 
       <div th:each="recipe : ${recipes}" class="grid-100 row addHover">
+        <img th:src="*{recipe.favorited} ? 'images/favorited.svg' : 'images/favorite.svg'" height="12px"/>
         <a th:href="@{|/detail/${recipe.id}|}">
           <div class="grid-70">
             <p th:text="${recipe.name}">

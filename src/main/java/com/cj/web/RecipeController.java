@@ -1,12 +1,14 @@
 package com.cj.web;
 
-import com.cj.model.Category;
-import com.cj.model.Ingredient;
-import com.cj.model.Instruction;
-import com.cj.model.Recipe;
+import com.cj.model.*;
 import com.cj.service.CategoryService;
 import com.cj.service.RecipeService;
+import com.cj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -29,6 +31,8 @@ public class RecipeController {
     private RecipeService recipeService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private UserService userService;
 
 
     public RecipeController() {}
@@ -49,12 +53,21 @@ public class RecipeController {
             recipes = (List<Recipe>)recipeService.findAll();
         }
         recipes.sort(Comparator.comparing(Recipe::getName));
-        // if user.favorites != null && recipes.size > 0
-            // foreach recipe in recipes
-                //if user.favorites.contains(recipe) then recipe.favorited = true
+
+        if (principal != null) {
+            User user = userService.findByName(principal.getName());
+            model.put("user", user);
+
+            if (user.getFavorites().size() > 0 && recipes.size() > 0) {
+                for (Recipe recipe : recipes) {
+                    if (user.getFavorites().contains(recipe)) {
+                        recipe.setFavorited(true);
+                    }
+                }
+            }
+        }
 
         model.put("recipes", recipes);
-
         model.put("categories", categoryService.findAll());
 
         return "index";
