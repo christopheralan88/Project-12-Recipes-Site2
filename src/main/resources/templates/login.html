@@ -37,17 +37,17 @@
       </a>
     </div>
 
-    <form action="/" method="get" th:object="${user}">
+    <form action="/login" method="post" th:object="${user}">
       <div class="grid-100">
         <div class="recipes">
           <div class="prefix-20 grid-60 suffix-20">
             <p>
-              <input placeholder="Username" th:text="*{name}"> </input>
+              <input placeholder="Username" th:field="*{username}"> </input>
             </p>
           </div> <div class="clear"></div>
           <div class="prefix-20 grid-60 suffix-20">
             <p>
-              <input type="password" th:text="*{password}"> </input>
+              <input type="password" th:field="*{password}"> </input>
             </p>
           </div> <div class="clear"></div>
           <div class="prefix-20 grid-60 suffix-20">

@@ -20,7 +20,7 @@ public class User extends BaseEntity{
     @NotNull
     @Column(unique = true)
     @Size(min = 1, max = 20)
-    private String name;
+    private String username;
     @NotNull
     @JsonIgnore
     private String[] roles;
@@ -36,20 +36,19 @@ public class User extends BaseEntity{
         super();
     }
 
-    public User(String name, String[] roles, String password) {
+    public User(String username, String[] roles, String password) {
         this();
-        this.name = name;
+        this.username = username;
         this.roles = roles;
         this.password = PASSWORD_ENCODER.encode(password);
-        this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public String[] getRoles() {
@@ -66,7 +65,6 @@ public class User extends BaseEntity{
 
     public void setPassword(String password) {
         this.password = PASSWORD_ENCODER.encode(password);
-        this.password = password;
     }
 
     public List<Recipe> getFavorites() {

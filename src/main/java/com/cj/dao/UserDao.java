@@ -8,5 +8,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(exported = false)
 public interface UserDao extends PagingAndSortingRepository<User, Long> {
-    User findByName(String username);
+    User findByUsername(String username);
 }

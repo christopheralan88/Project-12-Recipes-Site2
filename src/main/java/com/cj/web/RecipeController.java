@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.Comparator;
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class RecipeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String viewAllRecipes(@RequestParam(value = "searchCategory", required = false, defaultValue = "") String category,
                                  @RequestParam(value = "searchDescription", required = false, defaultValue = "") String description,
+                                 Principal principal,
                                  ModelMap model) {
         List<Recipe> recipes;
         if (! category.equals("") && description.equals("")) {
