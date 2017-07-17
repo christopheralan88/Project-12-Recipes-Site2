@@ -90,8 +90,9 @@ public class DatabaseLoader implements ApplicationRunner {
                     recipeDao.save(recipe);
 
                     //add each recipe to the user object named "user"
-                    userList.get(1).getFavorites().add(recipe);
-                    userDao.save(userList);
+                    //User user = userList.get(1);
+                    //user.getFavorites().add(recipe);
+                    //userDao.save(user);
                 });
     }
 }
