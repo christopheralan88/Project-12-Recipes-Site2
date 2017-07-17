@@ -73,6 +73,23 @@ public class RecipeController {
         return "index";
     }
 
+    @RequestMapping(value = "/recipe/new-favorite/{id}", method = RequestMethod.POST)
+    public String toggleFavorite(@PathVariable Long id, Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        } else {
+            User user = userService.findByName(principal.getName());
+            Recipe recipe = recipeService.findById(id);
+                if (user.getFavorites().contains(recipe)) {
+                    user.getFavorites().remove(recipe);
+                } else {
+                    user.getFavorites().add(recipe);
+                }
+            userService.save(user);
+            return "redirect:/";
+        }
+    }
+
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String viewAddRecipe(ModelMap model) {
         List<Category> categories = (List<Category>)categoryService.findAll();
