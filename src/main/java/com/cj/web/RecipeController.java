@@ -107,17 +107,22 @@ public class RecipeController {
         model.put("newIngredient", new Ingredient());
         model.put("newInstruction", new Instruction());
 
+        User user = userService.findByName(principal.getName());
+        model.put("user", user);
+
         return "edit";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String addRecipe(@Valid Recipe recipe, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String addRecipe(@Valid Recipe recipe, Principal principal, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("recipe", recipe);
             redirectAttributes.addFlashAttribute("errors", "Please fill out the form completely");
             return "redirect:/errors";
         }
 
+        User user = userService.findByName(principal.getName());
+        recipe.setUser(user);
         recipeService.save(recipe);
         return "redirect:/";
     }
@@ -130,7 +135,7 @@ public class RecipeController {
         }
         if (principal.getName().equals(recipe.getUser().getUsername())) {
             model.put("categories", categoryService.findAll());
-            model.put("recipe", recipeService.findById(id));
+            model.put("recipe", recipe);
             return "edit";
         } else {
             redirectAttributes.addFlashAttribute("errors", "You can only edit recipes that you own");
@@ -139,9 +144,18 @@ public class RecipeController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    public String deleteRecipe(@PathVariable Long id, ModelMap model) {
+    public String deleteRecipe(@PathVariable Long id, Principal principal, RedirectAttributes redirectAttributes) {
+        Recipe recipe = recipeService.findById(id);
+        if (principal == null) {
+            return "redirect:/login";
+        }
+        if (principal.getName().equals(recipe.getUser().getUsername())) {
             recipeService.delete(recipeService.findById(id));
-        return "redirect:/";
+            return "redirect:/";
+        } else {
+            redirectAttributes.addFlashAttribute("errors", "You can only delete recipes that you own");
+            return "redirect:/";
+        }
     }
 
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)

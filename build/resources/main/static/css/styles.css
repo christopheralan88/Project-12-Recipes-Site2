@@ -107,4 +107,10 @@ button {
 .flush-right {
   float: right; }
 
+.errors {
+    margin: 20px auto 0;
+    text-align: center;
+    color: salmon;
+}
+
 /*# sourceMappingURL=styles.css.map */

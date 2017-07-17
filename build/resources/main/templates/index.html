@@ -41,6 +41,7 @@
 
     <div class="recipes">
 
+      <p class="errors" th:text="${errors}"></p>
       <form action="/" method="get">
         <div class="grid-100 row controls">
           <div class="grid-30">
@@ -63,10 +64,9 @@
 
       <div th:each="recipe : ${recipes}" class="grid-100 row addHover">
         <form th:action="@{|/recipe/new-favorite/${recipe.id}|}" method="post">
-          <input type="hidden" th:value="${recipe.id}"/>
-          <button type="submit" style="display:inline-block">
+          <a onclick="this.parentNode.submit()" style="cursor: pointer">
             <img th:src="*{recipe.favorited} ? 'images/favorited.svg' : 'images/favorite.svg'" height="12px"/>
-          </button>
+          </a>
         </form>
         <a th:href="@{|/detail/${recipe.id}|}">
           <div class="grid-70">
