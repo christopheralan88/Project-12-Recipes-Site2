@@ -91,7 +91,11 @@ public class RecipeController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String viewAddRecipe(ModelMap model) {
+    public String viewAddRecipe(ModelMap model, Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+
         List<Category> categories = (List<Category>)categoryService.findAll();
         model.put("categories", categories);
 
@@ -119,10 +123,19 @@ public class RecipeController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editRecipe(@PathVariable Long id, ModelMap model) {
-        model.put("categories", categoryService.findAll());
-        model.put("recipe", recipeService.findById(id));
-        return "edit";
+    public String editRecipe(@PathVariable Long id, ModelMap model, Principal principal, RedirectAttributes redirectAttributes) {
+        Recipe recipe = recipeService.findById(id);
+        if (principal == null) {
+            return "redirect:/login";
+        }
+        if (principal.getName().equals(recipe.getUser().getUsername())) {
+            model.put("categories", categoryService.findAll());
+            model.put("recipe", recipeService.findById(id));
+            return "edit";
+        } else {
+            redirectAttributes.addFlashAttribute("errors", "You can only edit recipes that you own");
+            return "redirect:/";
+        }
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
