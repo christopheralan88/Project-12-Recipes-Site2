@@ -1,22 +1,25 @@
 package com.cj.web;
 
-import com.cj.dao.UserDao;
 import com.cj.model.User;
+import com.cj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class LoginController {
     @Autowired
-    private UserDao userDao;
+    private UserService userService;
 
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
@@ -42,7 +45,7 @@ public class LoginController {
             return "redirect:/login";
         }
 
-        User userToLogin = userDao.findByUsername(user.getUsername());
+        User userToLogin = userService.findByUsername(user.getUsername());
         if (userToLogin != null) {
             return "redirect:/";
         } else {
@@ -50,8 +53,29 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("/sign-up")
-    public String viewSignUp() {
+    @RequestMapping(path = "/signup", method = RequestMethod.GET)
+    public String viewSignUp(ModelMap model) {
+        model.put("user", new User());
         return "signup";
+    }
+
+    @RequestMapping(path = "/signup", method = RequestMethod.POST)
+    @SuppressWarnings("unchecked")
+    public String addUser(@RequestParam(value = "password") String password,
+                          @Valid User user, BindingResult result,
+                          RedirectAttributes redirectAttributes) {
+        User user1 = userService.findByUsername(user.getUsername());
+        /*List<User> users = (List)userService.findAll();
+        boolean usernameAlreadyExists = users.stream()
+                                            .findFirst().filter(u -> u.getUsername().equals(user.getUsername()))
+                                                .isPresent();*/
+        if (user1 != null) {
+            redirectAttributes.addFlashAttribute("error", "Username already exists");
+            return "redirect:/signup";
+        }
+        String[] userRoles = new String[] {"ROLE_USER"};
+        user.setRoles(userRoles);
+        userService.save(user);
+        return "redirect:/";
     }
 }

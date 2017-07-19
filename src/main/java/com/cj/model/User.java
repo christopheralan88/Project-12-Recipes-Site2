@@ -21,7 +21,6 @@ public class User extends BaseEntity{
     @Column(unique = true)
     @Size(min = 1, max = 20)
     private String username;
-    @NotNull
     @JsonIgnore
     private String[] roles;
     @NotNull

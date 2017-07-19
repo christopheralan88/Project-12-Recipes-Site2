@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
 
   <meta charset="utf-8">
@@ -16,11 +16,11 @@
 <body>
 
   <nav>
-    <a href="signup.html">
+    <a href="/signup">
       sign-up
     </a>
     &bull;
-    <a href="login.html">
+    <a href="/login">
       login
     </a>
   </nav>
@@ -37,30 +37,33 @@
       </a>
     </div>
 
-    <div class="grid-100">
-      <div class="recipes">
-        <div class="prefix-20 grid-60 suffix-20">
-          <p>
-            <input placeholder="Username"> </input>
-          </p>
-        </div> <div class="clear"></div>
-        <div class="prefix-20 grid-60 suffix-20">
-          <p>
-            <input placeholder="Password" type="password"> </input>
-          </p>
-        </div> <div class="clear"></div>
-        <div class="prefix-20 grid-60 suffix-20">
-          <p>
-            <input placeholder="Password Again" type="password"> </input>
-          </p>
-        </div> <div class="clear"></div>
-        <div class="prefix-20 grid-60 suffix-20">
-          <p>
-            <button>Sign-up</button>
-          </p>
-        </div> <div class="clear"></div>
-      </div> <!-- recipes -->
-    </div> <!-- grid-100 -->
+    <form action="/signup" method="post" th:object="${user}">
+      <div class="grid-100">
+        <div class="recipes">
+          <div class="prefix-20 grid-60 suffix-20">
+            <p>
+              <input placeholder="Username" th:field="*{username}"> </input>
+            </p>
+          </div> <div class="clear"></div>
+          <div class="prefix-20 grid-60 suffix-20">
+            <p>
+              <input placeholder="Password" type="password" th:field="*{password}"> </input>
+            </p>
+          </div> <div class="clear"></div>
+          <div class="prefix-20 grid-60 suffix-20">
+            <p>
+              <input placeholder="Password Again" type="password" id="confirmPassword"> </input>
+            </p>
+          </div> <div class="clear"></div>
+          <div class="prefix-20 grid-60 suffix-20">
+            <p>
+              <button type="submit">Sign-up</button>
+            </p>
+          </div> <div class="clear"></div>
+        </div> <!-- recipes -->
+      </div> <!-- grid-100 -->
+    </form>
+
   </div> <!-- grid-container -->
 </body>
 </html>

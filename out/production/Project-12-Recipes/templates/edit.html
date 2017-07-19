@@ -49,7 +49,7 @@
 
       <form action="/" method="post" th:object="${recipe}">
         <input type="hidden" th:field="*{id}"/>
-        <input type="hidden" th:field="*{user}" th:value="*{user}"/>
+        <!--<input type="hidden" id="user" name="user" th:field="*{user}" th:value="${user.username}" th:text="${user.username}"/>-->
 
         <div class="grid-100 row">
           <div class="grid-20">

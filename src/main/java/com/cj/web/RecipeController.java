@@ -55,7 +55,7 @@ public class RecipeController {
         recipes.sort(Comparator.comparing(Recipe::getName));
 
         if (principal != null) {
-            User user = userService.findByName(principal.getName());
+            User user = userService.findByUsername(principal.getName());
             model.put("user", user);
 
             if (user.getFavorites().size() > 0 && recipes.size() > 0) {
@@ -78,7 +78,7 @@ public class RecipeController {
         if (principal == null) {
             return "redirect:/login";
         } else {
-            User user = userService.findByName(principal.getName());
+            User user = userService.findByUsername(principal.getName());
             Recipe recipe = recipeService.findById(id);
                 if (user.getFavorites().contains(recipe)) {
                     user.getFavorites().remove(recipe);
@@ -107,7 +107,7 @@ public class RecipeController {
         model.put("newIngredient", new Ingredient());
         model.put("newInstruction", new Instruction());
 
-        User user = userService.findByName(principal.getName());
+        User user = userService.findByUsername(principal.getName());
         model.put("user", user);
 
         return "edit";
@@ -121,7 +121,7 @@ public class RecipeController {
             return "redirect:/errors";
         }
 
-        User user = userService.findByName(principal.getName());
+        User user = userService.findByUsername(principal.getName());
         recipe.setUser(user);
         recipeService.save(recipe);
         return "redirect:/";
