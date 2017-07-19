@@ -41,6 +41,7 @@
       <div class="grid-100">
         <div class="recipes">
           <div class="prefix-20 grid-60 suffix-20">
+            <p th:text="${error != null ? error : ''}" class="errors"></p>
             <p>
               <input placeholder="Username" th:field="*{username}"> </input>
             </p>
