@@ -165,6 +165,8 @@ public class RecipeController {
         return "detail";
     }
 
+
+
     @RequestMapping(value = "/errors", method = RequestMethod.GET)
     public String viewErrors() {
         return "errors";
