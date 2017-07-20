@@ -28,6 +28,7 @@ import javax.servlet.Filter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
@@ -164,6 +165,35 @@ public class RecipeControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
     }
+
+    @Test
+    public void addRecipeWithNoUser() throws Exception {
+        Recipe recipe = recipeBuilder();
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/")
+                .sessionAttr("recipe", recipe))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/login"));
+    }
+
+    /*@Test
+    public void addRecipeWithRightUser() throws Exception {
+        Recipe recipe = new Recipe("recipe1", category, "an image", null,
+                null, 123L, 321L, "a yummy recipe", null);
+
+        //don't persist recipe because category does not exist in database, so you'll get an TransientPropertyValueException.
+        //RecipeService spy = Mockito.spy(recipeService);
+        //doNothing().when(recipeService).save(recipe);
+        when(recipeService.save(recipe)).thenReturn(recipe);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/")
+                .sessionAttr("recipe", recipe)
+                .with(rightUserBuilder()))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+    }*/
 
     private Recipe recipeBuilder() {
         return new Recipe("recipe1", category, "an image", null,

@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width"/>
 
   <title>Sign-up | My Recipes</title>
 
-  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="css/unsemantic-grid-responsive.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
+  <link rel="stylesheet" href="css/unsemantic-grid-responsive.css"/>
+  <link rel="stylesheet" href="css/styles.css"/>
 
 </head>
 
@@ -30,34 +30,35 @@
     <div class="grid-100">
       <a href="index.html">
         <h1>
-          <img src="images/chefbot.svg" height="60px">
-          <br>
+          <img src="images/chefbot.svg" height="60px"/>
+          <br/>
           My Recipes
         </h1>
       </a>
     </div>
 
-    <form action="/signup" method="post" th:object="${user}">
+    <form action="/signup" method="post" id="newUserForm" name="newUserForm" th:object="${user}">
       <div class="grid-100">
         <div class="recipes">
           <div class="prefix-20 grid-60 suffix-20">
+            <p th:text="${error != null ? error : ''}" class="errors"></p>
             <p>
               <input placeholder="Username" th:field="*{username}"> </input>
             </p>
           </div> <div class="clear"></div>
           <div class="prefix-20 grid-60 suffix-20">
             <p>
-              <input placeholder="Password" type="password" th:field="*{password}"> </input>
+              <input placeholder="Password" type="password" id="password" name="password" th:field="*{password}"> </input>
             </p>
           </div> <div class="clear"></div>
           <div class="prefix-20 grid-60 suffix-20">
             <p>
-              <input placeholder="Password Again" type="password" id="confirmPassword"> </input>
+              <input placeholder="Password Again" type="password" id="confirmPassword" name="confirmPassword"> </input>
             </p>
           </div> <div class="clear"></div>
           <div class="prefix-20 grid-60 suffix-20">
             <p>
-              <button type="submit">Sign-up</button>
+              <button type="submit" id="submit" name="submit">Sign-up</button>
             </p>
           </div> <div class="clear"></div>
         </div> <!-- recipes -->
@@ -65,5 +66,11 @@
     </form>
 
   </div> <!-- grid-container -->
+
+  <script src="https://code.jquery.com/jquery-3.2.1.js"
+          integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+          crossorigin="anonymous"></script>
+  <script th:src="@{/js/password-matcher.js}" type="text/javascript"></script>
+
 </body>
 </html>
