@@ -30,10 +30,8 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -124,6 +122,45 @@ public class RecipeControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/edit/1")
                 .with(wrongUserBuilder()))
                 .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+    }
+
+    @Test
+    public void deleteRecipeWithRightUser() throws Exception {
+        Recipe recipe = recipeBuilder();
+
+        when(recipeService.findById(1L)).thenReturn(recipe);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/delete/1")
+                .with(rightUserBuilder()))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+    }
+
+    @Test
+    public void deleteRecipeWithNoUser() throws Exception {
+        Recipe recipe = recipeBuilder();
+
+        when(recipeService.findById(1L)).thenReturn(recipe);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/delete/1"))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/login"));
+    }
+
+    @Test
+    public void deleteRecipeWithWrongUser() throws Exception {
+        Recipe recipe = recipeBuilder();
+
+        when(recipeService.findById(1L)).thenReturn(recipe);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/delete/1")
+                .with(wrongUserBuilder()))
+                .andDo(print())
+                .andExpect(flash().attributeExists("errors"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
     }
