@@ -55,6 +55,7 @@ public class RecipeControllerTest {
     private MockMvc mockMvc;
     private Category category = new Category("Lunch");
     private User rightUser = new User("admin", new String[] {"ROLE_USER", "ROLE_ADMIN"}, "abc");
+    private User wrongUser = new User("user", new String[] {"ROLE_USER"}, "def");
 
 
     @Before
@@ -87,7 +88,7 @@ public class RecipeControllerTest {
     }
 
     @Test
-    public void editRecipeWithLoggingIn() throws Exception {
+    public void editRecipeWithRightUser() throws Exception {
         Recipe recipe = recipeBuilder();
         List<Category> categories = new ArrayList<>();
         categories.add(category);
@@ -96,14 +97,14 @@ public class RecipeControllerTest {
         when(categoryService.findAll()).thenReturn(categories);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/edit/1")
-                .with(userBuilder()))
+                .with(rightUserBuilder()))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("edit"));
     }
 
     @Test
-    public void editRecipeWithoutLoggingIn() throws Exception {
+    public void editRecipeWithoutNoUser() throws Exception {
         Recipe recipe = recipeBuilder();
 
         when(recipeService.findById(1L)).thenReturn(recipe);
@@ -114,15 +115,38 @@ public class RecipeControllerTest {
                 .andExpect(redirectedUrl("/login"));
     }
 
+    @Test
+    public void editRecipeWithWrongUser() throws Exception {
+        Recipe recipe = recipeBuilder();
+
+        when(recipeService.findById(1L)).thenReturn(recipe);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/edit/1")
+                .with(wrongUserBuilder()))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+    }
+
     private Recipe recipeBuilder() {
         return new Recipe("recipe1", category, "an image", null,
                 null, 123L, 321L, "a yummy recipe", rightUser);
     }
 
-    private RequestPostProcessor userBuilder() {
+    private RequestPostProcessor rightUserBuilder() {
+        //returns RequestPostProcessor based on the User that was used to create
+        // the recipe in recipeBuilder()
         return user(rightUser.getUsername())
                 .roles("USER")
                 .password(rightUser.getPassword());
+    }
+
+    private RequestPostProcessor wrongUserBuilder() {
+        //returns a RequestPostProcessor that is based on a User that is different
+        // from the User used to create the recipe in recipeBuilder()
+        return user(wrongUser.getUsername())
+                .roles("USER")
+                .password(wrongUser.getPassword());
     }
 
 }
