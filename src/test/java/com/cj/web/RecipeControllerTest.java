@@ -1,12 +1,11 @@
 package com.cj.web;
 
 import com.cj.Application;
-import com.cj.model.Category;
-import com.cj.model.Recipe;
-import com.cj.model.User;
+import com.cj.model.*;
 import com.cj.service.CategoryService;
 import com.cj.service.RecipeService;
 import com.cj.service.UserService;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,9 +51,9 @@ public class RecipeControllerTest {
     @InjectMocks
     private RecipeController recipeController;
     private MockMvc mockMvc;
-    private Category category = new Category("Lunch");
-    private User rightUser = new User("admin", new String[] {"ROLE_USER", "ROLE_ADMIN"}, "abc");
-    private User wrongUser = new User("user", new String[] {"ROLE_USER"}, "def");
+    private Category category;
+    private User rightUser;
+    private User wrongUser;
 
 
     @Before
@@ -63,12 +62,22 @@ public class RecipeControllerTest {
         viewResolver.setPrefix("/WEB-INF/");
         viewResolver.setSuffix(".html");
 
+        category = new Category("Lunch");
+        rightUser = new User("admin", new String[] {"ROLE_USER", "ROLE_ADMIN"}, "abc");
+        wrongUser = new User("user", new String[] {"ROLE_USER"}, "def");
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.webAppContextSetup(context)
                                  .addFilters(springSecurityFilterChain)
                                  //.standaloneSetup(recipeController)
                                  //.setViewResolvers(viewResolver)
                                  .build();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        category = null;
+        rightUser = null;
+        wrongUser = null;
     }
 
     @Test
@@ -167,14 +176,176 @@ public class RecipeControllerTest {
     }
 
     @Test
-    public void addRecipeWithNoUser() throws Exception {
-        Recipe recipe = recipeBuilder();
-
-        mockMvc.perform(MockMvcRequestBuilders.post("/")
-                .sessionAttr("recipe", recipe))
+    public void viewAddRecipePageWithNoUser() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/add"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/login"));
+    }
+
+    @Test
+    public void viewAddRecipePageWithUser() throws Exception {
+        Recipe recipe = recipeBuilder();
+        List<Category> categories = new ArrayList<>();
+        categories.add(category);
+
+        when(categoryService.findAll()).thenReturn(categories);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/add")
+                .with(rightUserBuilder()))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("edit"));
+    }
+
+    @Test
+    public void addRecipePageWithNoUser() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/"))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/login"));
+    }
+
+    @Test
+    public void toggleFavoriteWithUser() throws Exception {
+        mockMvc.perform((MockMvcRequestBuilders.post("/recipe/new-favorite/1")).param("id", "1").with(rightUserBuilder()))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+    }
+
+    @Test
+    public void toggleFavoriteWithNoUser() throws Exception {
+        mockMvc.perform((MockMvcRequestBuilders.post("/recipe/new-favorite/1")).param("id", "1"))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/login"));
+    }
+
+    @Test
+    public void viewIndexWithNoSearchCriteriaAndNoUser() throws Exception {
+        Recipe recipe = recipeBuilder();
+        List<Recipe> recipes = new ArrayList<>();
+        recipes.add(recipe);
+        List<Category> categories = new ArrayList<>();
+        categories.add(category);
+
+        when(recipeService.findAll()).thenReturn(recipes);
+        when(categoryService.findAll()).thenReturn(categories);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/"))
+                .andDo(print())
+                .andExpect(model().size(2))
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"));
+    }
+
+    @Test
+    public void viewIndexWithNoSearchCriteriaAndUser() throws Exception {
+        Recipe recipe = recipeBuilder();
+        List<Recipe> recipes = new ArrayList<>();
+        recipes.add(recipe);
+        List<Category> categories = new ArrayList<>();
+        categories.add(category);
+
+        when(recipeService.findAll()).thenReturn(recipes);
+        when(categoryService.findAll()).thenReturn(categories);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/").with(rightUserBuilder()))
+                .andDo(print())
+                .andExpect(model().size(3))
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"));
+    }
+
+    @Test
+    public void viewIndexWithCategorySearchCriteriaAndNoUser() throws Exception {
+        String categoryCriteria = "Lunch";
+        Recipe recipe = recipeBuilder();
+        List<Recipe> recipes = new ArrayList<>();
+        recipes.add(recipe);
+        List<Category> categories = new ArrayList<>();
+        categories.add(category);
+
+        when(recipeService.findByCategoryName(categoryCriteria)).thenReturn(recipes);
+        when(recipeService.findAll()).thenReturn(recipes);
+        when(categoryService.findAll()).thenReturn(categories);
+
+        mockMvc.perform((MockMvcRequestBuilders.get("/"))
+                .param("searchCategory", categoryCriteria))
+                .andDo(print())
+                .andExpect(model().size(2))
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"));
+    }
+
+    @Test
+    public void viewIndexWithDescriptionCriteriaAndNoUser() throws Exception {
+        String descriptionCriteria = "Lunch";
+        Recipe recipe = recipeBuilder();
+        List<Recipe> recipes = new ArrayList<>();
+        recipes.add(recipe);
+        List<Category> categories = new ArrayList<>();
+        categories.add(category);
+
+        when(recipeService.findByDescriptionContains(descriptionCriteria)).thenReturn(recipes);
+        when(categoryService.findAll()).thenReturn(categories);
+
+        mockMvc.perform((MockMvcRequestBuilders.get("/"))
+                .param("searchDescription", descriptionCriteria))
+                .andExpect(model().attributeExists("categories"))
+                .andExpect(model().attributeExists("recipes"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"));
+    }
+
+    @Test
+    public void viewIndexWithDescriptionAndCategoryCriteriaAndNoUser() throws Exception {
+        String descriptionCriteria = "3";
+        String categoryCriteria = "Lunch";
+        Recipe recipe = recipeBuilder();
+        List<Recipe> recipes = new ArrayList<>();
+        recipes.add(recipe);
+        List<Category> categories = new ArrayList<>();
+        categories.add(category);
+
+        when(recipeService.findByCategoryNameAndDescriptionContains(categoryCriteria, descriptionCriteria)).thenReturn(recipes);
+        when(categoryService.findAll()).thenReturn(categories);
+
+        mockMvc.perform((MockMvcRequestBuilders.get("/"))
+                .param("searchDescription", descriptionCriteria)
+                .param("searchCategory", categoryCriteria))
+                .andExpect(model().attributeExists("categories"))
+                .andExpect(model().attributeExists("recipes"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"));
+    }
+
+    @Test
+    public void viewIndexWithDescriptionAndCategoryCriteriaAndUser() throws Exception {
+        String descriptionCriteria = "3";
+        String categoryCriteria = "Lunch";
+        Recipe recipe = recipeBuilder();
+        List<Recipe> recipes = new ArrayList<>();
+        recipes.add(recipe);
+        List<Category> categories = new ArrayList<>();
+        categories.add(category);
+
+        when(recipeService.findByCategoryNameAndDescriptionContains(categoryCriteria, descriptionCriteria)).thenReturn(recipes);
+        when(categoryService.findAll()).thenReturn(categories);
+
+        mockMvc.perform((MockMvcRequestBuilders.get("/"))
+                .param("searchDescription", descriptionCriteria)
+                .param("searchCategory", categoryCriteria)
+                .with(rightUserBuilder()))
+                .andExpect(model().attributeExists("categories"))
+                .andExpect(model().attributeExists("recipes"))
+                .andExpect(model().attributeExists("user"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"));
     }
 
     /*@Test

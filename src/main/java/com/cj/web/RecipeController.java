@@ -101,8 +101,8 @@ public class RecipeController {
         recipe.setCategory(categories.get(0));
         model.put("recipe", recipe);
 
-        model.put("newIngredient", new Ingredient());
-        model.put("newInstruction", new Instruction());
+        //model.put("newIngredient", new Ingredient());
+        //model.put("newInstruction", new Instruction());
 
         User user = userService.findByUsername(principal.getName());
         model.put("user", user);
