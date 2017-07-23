@@ -18,12 +18,16 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.servlet.Filter;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -76,6 +80,38 @@ public class LoginControllerTest {
                 .andExpect(view().name("login"));
     }
 
+    @Test
+    public void verifyUserLoginWithoutExistingUser() throws Exception {
+        User user = rightUser;
+        when(userService.findByUsername(user.getUsername())).thenReturn(null);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/login"))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/login"));
+    }
+
+    @Test
+    public void bindingResultForUserObjectIsCaught() throws Exception {
+        BindingResult result = mock(BindingResult.class);
+
+        when(result.hasErrors()).thenReturn(true);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/login"))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/login"));
+    }
+
+    @Test
+    public void viewSignUpPage() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/signup"))
+                .andDo(print())
+                .andExpect(model().attributeExists("user"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("signup"));
+    }
+
     private RequestPostProcessor rightUserBuilder() {
         //returns RequestPostProcessor based on the User that was used to create
         // the recipe in recipeBuilder()
@@ -83,6 +119,8 @@ public class LoginControllerTest {
                 .roles("USER")
                 .password(rightUser.getPassword());
     }
+
+
 
 
 }

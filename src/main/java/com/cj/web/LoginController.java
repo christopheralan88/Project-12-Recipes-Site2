@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class LoginController {
@@ -37,7 +37,7 @@ public class LoginController {
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public String loginVerification(@Valid User user, BindingResult result, RedirectAttributes redirectAttributes,
+    public String loginVerification(@Valid @ModelAttribute("user") User user, BindingResult result, RedirectAttributes redirectAttributes,
                                     Model model, HttpServletRequest request) {
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("user", user);
