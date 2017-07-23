@@ -86,15 +86,6 @@ public class LoginControllerTest {
     }
 
     @Test
-    public void viewLoginFormWhenRedirectedWithoutFlashMessage() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/login"))
-                .andDo(print())
-                .andExpect(model().size(0))
-                .andExpect(status().isOk())
-                .andExpect(view().name("login"));
-    }
-
-    @Test
     public void verifyUserLoginWithoutExistingUser() throws Exception {
         User user = rightUser;
         when(userService.findByUsername(user.getUsername())).thenReturn(null);
