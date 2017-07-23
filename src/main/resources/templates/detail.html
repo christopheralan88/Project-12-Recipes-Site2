@@ -44,7 +44,7 @@
       <div class="grid-100 row controls">
         <form th:action="@{|/recipe/new-favorite/${recipe.id}|}" method="post">
           <a onclick="this.parentNode.submit()" style="cursor: pointer">
-            <img th:src="${recipe.favorited} ? 'images/favorited.svg' : 'images/favorite.svg'" height="12px"/>
+            <img th:src="${recipe.favorited} ? '/images/favorited.svg' : '/images/favorite.svg'" height="12px"/>
           </a>
         </form>
         <div class="grid-50">
