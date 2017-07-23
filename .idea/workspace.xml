@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e194299-3882-4dbd-b1d9-18172ff7c3aa" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/cj/web/RecipeController.class" afterPath="$PROJECT_DIR$/build/classes/main/com/cj/web/RecipeController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cj/web/LoginController.java" afterPath="$PROJECT_DIR$/src/main/java/com/cj/web/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cj/web/RecipeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/cj/web/RecipeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" afterPath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/detail.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/css/styles.css" afterPath="$PROJECT_DIR$/build/resources/main/static/css/styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/templates/detail.html" afterPath="$PROJECT_DIR$/build/resources/main/templates/detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/templates/edit.html" afterPath="$PROJECT_DIR$/build/resources/main/templates/edit.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/cj/web/LoginControllerTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/cj/web/LoginControllerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/cj/web/RecipeControllerTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/cj/web/RecipeControllerTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -123,8 +121,8 @@
       <file leaf-file-name="RecipeControllerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/cj/web/RecipeControllerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-105">
-              <caret line="357" column="0" lean-forward="true" selection-start-line="357" selection-start-column="0" selection-end-line="357" selection-end-column="0" />
+            <state relative-caret-position="1731">
+              <caret line="393" column="40" lean-forward="true" selection-start-line="393" selection-start-column="40" selection-end-line="393" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -135,8 +133,8 @@
       <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cj/web/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+            <state relative-caret-position="-527">
+              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -147,8 +145,8 @@
       <file leaf-file-name="LoginControllerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/cj/web/LoginControllerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="86" column="31" lean-forward="true" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
+            <state relative-caret-position="1193">
+              <caret line="105" column="5" lean-forward="false" selection-start-line="105" selection-start-column="5" selection-end-line="105" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -169,7 +167,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>newvalue</find>
       <find>grid</find>
       <find>grid-30</find>
       <find>prefix-20</find>
@@ -199,6 +196,7 @@
       <find>flush-right</find>
       <find>edit</find>
       <find>viewdet</find>
+      <find>user(</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -614,8 +612,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/cj/web/RecipeController.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/cj/web/RecipeControllerTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/cj/web/LoginControllerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cj/web/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/cj/web/LoginControllerTest.java" />
       </list>
     </option>
   </component>
@@ -801,6 +799,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project-12-Recipes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project-12-Recipes-Site" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="dao" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -844,7 +872,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.com.cj.web in Project-12-Recipes_test">
+  <component name="RunManager" selected="JUnit.LoginControllerTest.veryifyUserLoginWithExistingUser">
     <configuration default="false" name="com.cj.web in Project-12-Recipes_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -859,52 +887,6 @@
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="package" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.cj.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.cj.Application" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Project-12-Recipes_main" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="LoginControllerTest.logout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.cj.web.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="Project-12-Recipes_test" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.cj.web" />
-      <option name="MAIN_CLASS_NAME" value="com.cj.web.LoginControllerTest" />
-      <option name="METHOD_NAME" value="logout" />
-      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -956,6 +938,58 @@
       <option name="PACKAGE_NAME" value="com.cj.web" />
       <option name="MAIN_CLASS_NAME" value="com.cj.web.LoginControllerTest" />
       <option name="METHOD_NAME" value="viewLoginFormWhenRedirectedWithoutFlashMessage" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="LoginControllerTest.veryifyUserLoginWithExistingUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.cj.web.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="Project-12-Recipes_test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.cj.web" />
+      <option name="MAIN_CLASS_NAME" value="com.cj.web.LoginControllerTest" />
+      <option name="METHOD_NAME" value="veryifyUserLoginWithExistingUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="LoginControllerTest.verifyUserLoginWithoutExistingUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.cj.web.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="Project-12-Recipes_test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.cj.web" />
+      <option name="MAIN_CLASS_NAME" value="com.cj.web.LoginControllerTest" />
+      <option name="METHOD_NAME" value="verifyUserLoginWithoutExistingUser" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -1175,18 +1209,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.com.cj.web in Project-12-Recipes_test" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Application" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.logout" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.RecipeControllerTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.viewLoginFormWhenRedirectedWithoutFlashMessage" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.RecipeControllerTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.viewLoginFormWhenRedirectedWithoutFlashMessage" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.veryifyUserLoginWithExistingUser" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.verifyUserLoginWithoutExistingUser" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.com.cj.web in Project-12-Recipes_test" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.viewLoginFormWhenRedirectedWithoutFlashMessage" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.RecipeControllerTest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.logout" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Application" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.veryifyUserLoginWithExistingUser" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.verifyUserLoginWithoutExistingUser" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.com.cj.web in Project-12-Recipes_test" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.viewLoginFormWhenRedirectedWithoutFlashMessage" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.RecipeControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -1460,24 +1494,31 @@
       <option name="project" value="LOCAL" />
       <updated>1500782274650</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Project complete except at 58% code coverage">
+      <created>1500788019262</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1500788019263</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TestHistory">
+    <history-entry file="LoginControllerTest_verifyUserLoginWithoutExistingUser - 2017.07.23 at 07h 24m 43s.xml">
+      <configuration name="LoginControllerTest.verifyUserLoginWithoutExistingUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginControllerTest_veryifyUserLoginWithExistingUser - 2017.07.23 at 07h 23m 18s.xml">
+      <configuration name="LoginControllerTest.veryifyUserLoginWithExistingUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginControllerTest_veryifyUserLoginWithExistingUser - 2017.07.23 at 07h 25m 58s.xml">
+      <configuration name="LoginControllerTest.veryifyUserLoginWithExistingUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginControllerTest_veryifyUserLoginWithExistingUser - 2017.07.23 at 07h 28m 21s.xml">
+      <configuration name="LoginControllerTest.veryifyUserLoginWithExistingUser" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="LoginControllerTest_viewLoginFormWhenRedirectedWithoutFlashMessage - 2017.07.23 at 01h 28m 16s.xml">
       <configuration name="LoginControllerTest.viewLoginFormWhenRedirectedWithoutFlashMessage" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RecipeControllerTest - 2017.07.23 at 01h 10m 27s.xml">
-      <configuration name="RecipeControllerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RecipeControllerTest - 2017.07.23 at 01h 12m 05s.xml">
-      <configuration name="RecipeControllerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RecipeControllerTest - 2017.07.23 at 01h 14m 02s.xml">
-      <configuration name="RecipeControllerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="com_cj_web_in_Project-12-Recipes_test - 2017.07.23 at 01h 02m 59s.xml">
-      <configuration name="com.cj.web in Project-12-Recipes_test" configurationId="JUnit" />
     </history-entry>
     <history-entry file="com_cj_web_in_Project-12-Recipes_test - 2017.07.23 at 01h 15m 08s.xml">
       <configuration name="com.cj.web in Project-12-Recipes_test" configurationId="JUnit" />
@@ -1510,7 +1551,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40604028" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.229375" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.229375" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1521,7 +1562,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6111577" sideWeight="0.49895832" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37961408" sideWeight="0.49895832" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1539,7 +1580,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="started adding users and Spring Security" />
     <MESSAGE value="started adding users and favoriting" />
     <MESSAGE value="need to change index HTML for favoriting and implement Spring Security to get active user" />
     <MESSAGE value="Added favoriting to index page.  Starting to implement Spring Security." />
@@ -1564,7 +1604,8 @@
     <MESSAGE value="Able to delete favorited recipe" />
     <MESSAGE value="Started testing LoginController" />
     <MESSAGE value="Have &gt;60% code coverage now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Have &gt;60% code coverage now" />
+    <MESSAGE value="Project complete except at 58% code coverage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Project complete except at 58% code coverage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1594,19 +1635,19 @@
           <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/cj/web/LoginControllerTest.java</url>
-          <line>95</line>
-          <properties />
-          <option name="timeStamp" value="83" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cj/web/LoginController.java</url>
           <line>48</line>
           <properties />
           <option name="timeStamp" value="89" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cj/web/LoginController.java</url>
+          <line>42</line>
+          <properties />
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="90" />
+      <option name="time" value="91" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1842,18 +1883,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cj/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="903">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding>
-            <element signature="e#1192#1193#0" expanded="true" />
-            <element signature="e#1223#1224#0" expanded="true" />
-            <element signature="e#1509#1510#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-test/4.2.3.RELEASE/b18e17a4e49ab7b5c73562a99a2c95c64ded110/spring-security-test-4.2.3.RELEASE-sources.jar!/org/springframework/security/test/web/servlet/request/SecurityMockMvcRequestPostProcessors.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
@@ -1942,7 +1971,7 @@
         <state relative-caret-position="360">
           <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
-            <element signature="e#422#423#0" expanded="true" />
+            <element signature="e#422#423#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1994,7 +2023,7 @@
         <state relative-caret-position="491">
           <caret line="65" column="8" lean-forward="false" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
           <folding>
-            <element signature="n#style#0;n#a#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2023,10 +2052,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cj/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1640">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding>
+            <element signature="e#1509#1510#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/cj/web/RecipeControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-105">
-          <caret line="357" column="0" lean-forward="true" selection-start-line="357" selection-start-column="0" selection-end-line="357" selection-end-column="0" />
+        <state relative-caret-position="1731">
+          <caret line="393" column="40" lean-forward="true" selection-start-line="393" selection-start-column="40" selection-end-line="393" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2035,8 +2074,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/cj/web/LoginControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="86" column="31" lean-forward="true" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
+        <state relative-caret-position="1193">
+          <caret line="105" column="5" lean-forward="false" selection-start-line="105" selection-start-column="5" selection-end-line="105" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2045,8 +2084,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cj/web/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+        <state relative-caret-position="-527">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
