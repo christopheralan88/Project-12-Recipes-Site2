@@ -27,6 +27,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import javax.servlet.Filter;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -81,6 +82,15 @@ public class LoginControllerTest {
     }
 
     @Test
+    public void viewLoginFormWhenRedirectedWithoutFlashMessage() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/login"))
+                .andDo(print())
+                .andExpect(model().size(0))
+                .andExpect(status().isOk())
+                .andExpect(view().name("login"));
+    }
+
+    @Test
     public void verifyUserLoginWithoutExistingUser() throws Exception {
         User user = rightUser;
         when(userService.findByUsername(user.getUsername())).thenReturn(null);
@@ -119,8 +129,6 @@ public class LoginControllerTest {
                 .roles("USER")
                 .password(rightUser.getPassword());
     }
-
-
 
 
 }

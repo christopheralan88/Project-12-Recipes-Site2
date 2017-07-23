@@ -85,10 +85,10 @@ public class RecipeControllerTest {
         List<Category> categories = new ArrayList<>();
         categories.add(category);
 
-        when(recipeService.findById(1L)).thenReturn(recipe);
+        when(recipeService.findById(2L)).thenReturn(recipe);
         when(categoryService.findAll()).thenReturn(categories);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/detail/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/detail/2"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("detail"));
@@ -162,11 +162,12 @@ public class RecipeControllerTest {
 
     @Test
     public void deleteRecipeWithWrongUser() throws Exception {
-        Recipe recipe = recipeBuilder();
+        Recipe recipe = new Recipe("recipe2", category, "an image", null,
+                null, 123L, 321L, "a yummy recipe", rightUser);
 
-        when(recipeService.findById(1L)).thenReturn(recipe);
+        when(recipeService.findById(2L)).thenReturn(recipe);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/delete/1")
+        mockMvc.perform(MockMvcRequestBuilders.post("/delete/2")
                 .with(wrongUserBuilder()))
                 .andDo(print())
                 .andExpect(flash().attributeExists("errors"))
@@ -343,6 +344,24 @@ public class RecipeControllerTest {
                 .andExpect(model().attributeExists("recipes"))
                 .andExpect(model().attributeExists("user"))
                 .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"));
+    }
+
+    @Test
+    public void viewIndexWithNoSearchCriteriaAndUserAndUserHasListOfFavorites() throws Exception {
+        Recipe recipe = recipeBuilder();
+        List<Recipe> recipes = new ArrayList<>();
+        recipes.add(recipe);
+        List<Category> categories = new ArrayList<>();
+        categories.add(category);
+
+        when(recipeService.findAll()).thenReturn(recipes);
+        when(categoryService.findAll()).thenReturn(categories);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/"))
+                .andDo(print())
+                .andExpect(model().size(2))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"));
     }

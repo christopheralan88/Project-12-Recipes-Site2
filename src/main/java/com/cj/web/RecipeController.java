@@ -137,6 +137,7 @@ public class RecipeController {
         if (principal.getName().equals(recipe.getUser().getUsername())) {
             model.put("categories", categoryService.findAll());
             model.put("recipe", recipe);
+            model.put("user", userService.findByUsername(principal.getName()));
             return "edit";
         } else {
             redirectAttributes.addFlashAttribute("errors", "You can only edit recipes that you own");
@@ -166,10 +167,4 @@ public class RecipeController {
         return "detail";
     }
 
-
-
-    @RequestMapping(value = "/errors", method = RequestMethod.GET)
-    public String viewErrors() {
-        return "errors";
-    }
 }
