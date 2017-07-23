@@ -53,10 +53,26 @@ public class CategoryServiceImplTest {
 
         //categories list acts as in-memory persistence.
         //when save method is called, add Category to in-memory persistence instead of database.
-        when(categoryDao.save(any(Category.class))).thenAnswer(a -> categories.add(categoryDinner));
+        when(categoryDao.save(any(Category.class)))
+                .thenAnswer(a -> categories.add(categoryDinner));
         categoryService.save(categoryDinner);
 
         assertTrue(categories.size() == 2);
+    }
+
+    @Test
+    public void delete_worksCorrectly() {
+        List<Category> categories = new ArrayList<>();
+        categories.add(categoryLunch);
+
+        //categories list acts as in-memory persistence.
+        //when delete method is called, remove Category to in-memory persistence instead of database.
+        doAnswer(a -> categories.remove(categoryLunch))
+                .when(categoryDao)
+                .delete(categoryLunch);
+        categoryService.delete(categoryLunch);
+
+        assertTrue(categories.size() == 0);
     }
 
 }
