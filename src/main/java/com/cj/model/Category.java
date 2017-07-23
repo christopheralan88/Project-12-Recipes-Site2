@@ -10,7 +10,7 @@ public class Category extends BaseEntity{
     @Column
     private String name;
 
-    protected Category() {
+    public Category() {
         super();
     }
 
