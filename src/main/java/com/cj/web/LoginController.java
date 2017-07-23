@@ -79,4 +79,14 @@ public class LoginController {
         userService.save(user);
         return "redirect:/";
     }
+
+    @RequestMapping(path = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request) {
+        try {
+            request.logout();
+        } catch (ServletException ex) {
+
+        }
+        return "redirect:/login";
+    }
 }
