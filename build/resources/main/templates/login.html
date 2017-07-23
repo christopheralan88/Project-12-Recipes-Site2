@@ -37,6 +37,7 @@
       </a>
     </div>
 
+    <p class="errors" th:text="${errors}"></p>
     <form action="/login" method="post" th:object="${user}">
       <div class="grid-100">
         <div class="recipes">
