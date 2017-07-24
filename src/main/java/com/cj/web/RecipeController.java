@@ -161,8 +161,16 @@ public class RecipeController {
     }
 
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
-    public String vewRecipeDetail(@PathVariable Long id, ModelMap model) {
-        model.put("recipe", recipeService.findById(id));
+    public String vewRecipeDetail(@PathVariable Long id, Principal principal, ModelMap model) {
+        Recipe recipe = recipeService.findById(id);
+        if (principal != null) {
+            User user = userService.findByUsername(principal.getName());
+            model.put("user", user);
+            if (user.getFavorites().contains(recipe)) {
+                recipe.setFavorited(true);
+            }
+        }
+        model.put("recipe", recipe);
         model.put("categories", categoryService.findAll());
         return "detail";
     }

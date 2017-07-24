@@ -76,8 +76,10 @@ public class LoginControllerTest {
 
     @Test
     public void viewLoginFormWhenRedirectedWithFlashMessage() throws Exception {
+        FlashMessage flashMessage = new FlashMessage("Incorrect username or password", FlashMessage.Status.FAILURE);
+
         mockMvc.perform(MockMvcRequestBuilders.get("/login")
-                .sessionAttr("flash", "You are not logged in!"))
+                .sessionAttr("flash", flashMessage))
                 .andDo(print())
                 .andExpect(model().attributeExists("user"))
                 .andExpect(model().attributeExists("flash"))
